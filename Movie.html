@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic AI - Movie Recommendation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="Movie.css" rel="stylesheet">
+   </head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <svg class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+                        </svg>
+                        <span class="ml-2 text-xl font-bold text-gray-900">Cinematic AI</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center">
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-700 bg-indigo-100">Home</a>
+                    <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-500 hover:text-gray-900">Trending</a>
+                    <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-500 hover:text-gray-900">Genres</a>
+                    <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-500 hover:text-gray-900">Profile</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Discover Your Next Favorite Movie</h1>
+                    <p class="text-xl mb-8">Our AI-powered recommendation engine learns your tastes to suggest perfect matches.</p>
+                    <div class="relative max-w-md">
+                        <input type="text" id="search-input" placeholder="Search for movies, genres, actors..." class="w-full py-3 px-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <button class="absolute right-2 top-2 text-indigo-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e34841c5-92e3-4df0-b299-08f6714364ed.png" alt="AI robot analyzing movie posters on a digital screen with colorful data visualizations" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Filter Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <h2 class="text-2xl font-bold mb-4 md:mb-0">Filter Movies</h2>
+                <div class="flex flex-wrap gap-3">
+                    <select id="genre-filter" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">All Genres</option>
+                    </select>
+                    <select id="year-filter" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">All Years</option>
+                    </select>
+                    <select id="rating-filter" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">All Ratings</option>
+                        <option value="9">9+</option>
+                        <option value="8">8+</option>
+                        <option value="7">7+</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendation Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Recommended For You</h2>
+            <div id="recommended-movies" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Recommended movies will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- All Movies Section -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6">Browse Movies</h2>
+            <div id="all-movies" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- All movies will be inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Cinematic AI</h3>
+                    <p>Helping you discover movies you'll love since 2023.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-indigo-400">Home</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">About</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-indigo-400">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-indigo-400">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-indigo-400">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="hover:text-indigo-400">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="hover:text-indigo-400">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Backend & Frontend Logic -->
+    <script>
+        // Mock Database - In a real app, this would be API calls to a backend
+        class MovieDB {
+            constructor() {
+                this.movies = [
+                    {
+                        id: 1,
+                        title: "Inception",
+                        genre: ["Sci-Fi", "Action", "Thriller"],
+                        year: 2010,
+                        rating: 8.8,
+                        director: "Christopher Nolan",
+                        cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"],
+                        description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+                        poster: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c99de974-6b8f-4034-a62c-f803e2d3e2c7.png" + "?text=Inception",
+                        alt: "Movie poster for Inception showing a dreamlike cityscape bending over itself"
+                    },
+                    {
+                        id: 2,
+                        title: "The Shawshank Redemption",
+                        genre: ["Drama"],
+                        year: 1994,
+                        rating: 9.3,
+                        director: "Frank Darabont",
+                        cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
+                        description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+                        poster: "https://placehold.co/300x450" + "?text=Shawshank",
+                        alt: "Movie poster for The Shawshank Redemption featuring the two main characters in prison"
+                    },
+                    {
+                        id: 3,
+                        title: "The Dark Knight",
+                        genre: ["Action", "Crime", "Drama"],
+                        year: 2008,
+                        rating: 9.0,
+                        director: "Christopher Nolan",
+                        cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
+                        description: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+                        poster: "https://placehold.co/300x450" + "?text=Dark+Knight",
+                        alt: "Movie poster for The Dark Knight featuring Batman standing in front of a burning building"
+                    },
+                    {
+                        id: 4,
+                        title: "Pulp Fiction",
+                        genre: ["Crime", "Drama"],
+                        year: 1994,
+                        rating: 8.9,
+                        director: "Quentin Tarantino",
+                        cast: ["John Travolta", "Uma Thurman", "Samuel L. Jackson"],
+                        description: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+                        poster: "https://placehold.co/300x450" + "?text=Pulp+Fiction",
+                        alt: "Movie poster for Pulp Fiction featuring Uma Thurman lying on a bed with a cigarette"
+                    },
+                    {
+                        id: 5,
+                        title: "Parasite",
+                        genre: ["Comedy", "Drama", "Thriller"],
+                        year: 2019,
+                        rating: 8.6,
+                        director: "Bong Joon Ho",
+                        cast: ["Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"],
+                        description: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+                        poster: "https://placehold.co/300x450" + "?text=Parasite",
+                        alt: "Movie poster for Parasite showing the main characters with their eyes covered"
+                    },
+                    {
+                        id: 6,
+                        title: "Spirited Away",
+                        genre: ["Animation", "Adventure", "Family"],
+                        year: 2001,
+                        rating: 8.6,
+                        director: "Hayao Miyazaki",
+                        cast: ["Daveigh Chase", "Suzanne Pleshette", "Miyu Irino"],
+                        description: "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
+                        poster: "https://placehold.co/300x450" + "?text=Spirited+Away",
+                        alt: "Movie poster for Spirited Away featuring the protagonist Chihiro with various spirits"
+                    },
+                    {
+                        id: 7,
+                        title: "Interstellar",
+                        genre: ["Adventure", "Drama", "Sci-Fi"],
+                        year: 2014,
+                        rating: 8.6,
+                        director: "Christopher Nolan",
+                        cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+                        description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+                        poster: "https://placehold.co/300x450" + "?text=Interstellar",
+                        alt: "Movie poster for Interstellar featuring a spaceship near a planet"
+                    },
+                    {
+                        id: 8,
+                        title: "The Godfather",
+                        genre: ["Crime", "Drama"],
+                        year: 1972,
+                        rating: 9.2,
+                        director: "Francis Ford Coppola",
+                        cast: ["Marlon Brando", "Al Pacino", "James Caan"],
+                        description: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+                        poster: "https://placehold.co/300x450" + "?text=Godfather",
+                        alt: "Movie poster for The Godfather featuring Marlon Brando as Don Vito Corleone"
+                    }
+                ];
+
+                // User preferences - in a real app, these would be stored in a database
+                this.userPreferences = {
+                    likedGenres: ["Sci-Fi", "Action"],
+                    dislikedGenres: ["Horror"],
+                    favoriteDirectors: ["Christopher Nolan", "Quentin Tarantino"],
+                    minRating: 8.0
+                };
+            }
+
+            // Get all movies (with optional filters)
+            getAllMovies(filters = {}) {
+                return this.movies.filter(movie => {
+                    // Genre filter
+                    if (filters.genre && filters.genre !== "" && !movie.genre.includes(filters.genre)) {
+                        return false;
+                    }
+                    
+                    // Year filter
+                    if (filters.year && filters.year !== "" && movie.year !== parseInt(filters.year)) {
+                        return false;
+                    }
+                    
+                    // Rating filter
+                    if (filters.rating && filters.rating !== "" && movie.rating < parseFloat(filters.rating)) {
+                        return false;
+                    }
+                    
+                    // Search term filter
+                    if (filters.searchTerm && filters.searchTerm !== "") {
+                        const searchLower = filters.searchTerm.toLowerCase();
+                        return movie.title.toLowerCase().includes(searchLower) ||
+                               movie.director.toLowerCase().includes(searchLower) ||
+                               movie.cast.some(actor => actor.toLowerCase().includes(searchLower)) ||
+                               movie.genre.some(g => g.toLowerCase().includes(searchLower));
+                    }
+                    
+                    return true;
+                });
+            }
+
+            // Get recommended movies based on user preferences
+            getRecommendedMovies() {
+                return this.movies.filter(movie => {
+                    // Filter by minimum rating preference
+                    if (movie.rating < this.userPreferences.minRating) {
+                        return false;
+                    }
+                    
+                    // Check if movie has liked genres
+                    const hasLikedGenre = this.userPreferences.likedGenres.some(genre => 
+                        movie.genre.includes(genre)
+                    );
+                    
+                    // Check if movie has disliked genres
+                    const hasDislikedGenre = this.userPreferences.dislikedGenres.some(genre => 
+                        movie.genre.includes(genre)
+                    );
+                    
+                    // Check if movie is by favorite director
+                    const favoriteDirector = this.userPreferences.favoriteDirectors.includes(movie.director);
+                    
+                    // Recommendation score (simplified)
+                    let score = 0;
+                    if (hasLikedGenre) score += 2;
+                    if (favoriteDirector) score += 3;
+                    if (hasDislikedGenre) score -= 4;
+                    
+                    return score >= 2 || movie.rating >= 8.5;
+                });
+            }
+
+            // Get all unique genres for filter dropdown
+            getAllGenres() {
+                const allGenres = this.movies.flatMap(movie => movie.genre);
+                return [...new Set(allGenres)];
+            }
+
+            // Get all unique years for filter dropdown
+            getAllYears() {
+                const allYears = this.movies.map(movie => movie.year);
+                return [...new Set(allYears)].sort((a, b) => b - a);
+            }
+        }
+
+        // UI Controller
+        class UIController {
+            constructor() {
+                this.db = new MovieDB();
+                this.initElements();
+                this.initFilters();
+                this.renderMovies();
+                this.setupEventListeners();
+            }
+
+            initElements() {
+                this.recommendedContainer = document.getElementById('recommended-movies');
+                this.allMoviesContainer = document.getElementById('all-movies');
+                this.genreFilter = document.getElementById('genre-filter');
+                this.yearFilter = document.getElementById('year-filter');
+                this.ratingFilter = document.getElementById('rating-filter');
+                this.searchInput = document.getElementById('search-input');
+            }
+
+            initFilters() {
+                // Populate genre filter
+                const genres = this.db.getAllGenres();
+                genres.forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    this.genreFilter.appendChild(option);
+                });
+
+                // Populate year filter
+                const years = this.db.getAllYears();
+                years.forEach(year => {
+                    const option = document.createElement('option');
+                    option.value = year;
+                    option.textContent = year;
+                    this.yearFilter.appendChild(option);
+                });
+            }
+
+            renderMovies() {
+                // Get current filter values
+                const filters = {
+                    genre: this.genreFilter.value,
+                    year: this.yearFilter.value,
+                    rating: this.ratingFilter.value,
+                    searchTerm: this.searchInput.value.trim()
+                };
+
+                // Clear containers
+                this.recommendedContainer.innerHTML = '';
+                this.allMoviesContainer.innerHTML = '';
+
+                // Render recommended movies
+                const recommendedMovies = this.db.getRecommendedMovies();
+                if (recommendedMovies.length > 0) {
+                    recommendedMovies.forEach(movie => {
+                        this.recommendedContainer.appendChild(this.createMovieCard(movie));
+                    });
+                } else {
+                    this.recommendedContainer.innerHTML = '<p class="col-span-full text-center text-gray-500">No recommendations yet. Try rating some movies first!</p>';
+                }
+
+                // Render all movies (filtered)
+                const allMovies = this.db.getAllMovies(filters);
+                if (allMovies.length > 0) {
+                    allMovies.forEach(movie => {
+                        this.allMoviesContainer.appendChild(this.createMovieCard(movie));
+                    });
+                } else {
+                    this.allMoviesContainer.innerHTML = '<p class="col-span-full text-center text-gray-500">No movies match your filters. Try adjusting them.</p>';
+                }
+            }
+
+            createMovieCard(movie) {
+                const card = document.createElement('div');
+                card.className = 'movie-card bg-white rounded-lg overflow-hidden';
+
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${movie.poster}" alt="${movie.alt}" class="w-full h-64 object-cover" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e6a2fe7f-8383-4bf6-a477-16595d3dec7c.png'">
+                        <div class="rating-badge absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold text-white">
+                            ${movie.rating.toFixed(1)}
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1 truncate">${movie.title}</h3>
+                        <p class="text-gray-600 text-sm mb-2">${movie.year} • ${movie.genre.join(', ')}</p>
+                        <p class="text-sm text-gray-500 mb-3 line-clamp-2">${movie.description}</p>
+                        <div class="flex justify-between items-center">
+                            <button class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-md text-sm font-medium hover:bg-indigo-200 transition-colors">Details</button>
+                            <div class="flex space-x-1">
+                                <button class="like-btn p-1 text-gray-400 hover:text-indigo-600" data-id="${movie.id}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                    </svg>
+                                </button>
+                                <button class="dislike-btn p-1 text-gray-400 hover:text-indigo-600" data-id="${movie.id}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018c.163 0 .326.02.485.06l.361.106a2 2 0 011.11 1.11l.106.361c.041.16.061.322.061.485v1M17 21h-2a2 2 0 01-2-2V7a2 2 0 012-2h2.5c.55 0 1 .45 1 1v9a1 1 0 01-1 1H17zm0 0v-5m0 5h2.5" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                return card;
+            }
+
+            setupEventListeners() {
+                // Filter change events
+                this.genreFilter.addEventListener('change', () => this.renderMovies());
+                this.yearFilter.addEventListener('change', () => this.renderMovies());
+                this.ratingFilter.addEventListener('change', () => this.renderMovies());
+                
+                // Search input event (with debounce)
+                let searchTimeout;
+                this.searchInput.addEventListener('input', () => {
+                    clearTimeout(
