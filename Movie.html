@@ -49,7 +49,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Filter Section -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -57,9 +57,15 @@
                 <div class="flex flex-wrap gap-3">
                     <select id="genre-filter" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <option value="">All Genres</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Action">Action</option>
+                        <option value="Crime">Crime</option>
                     </select>
                     <select id="year-filter" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <option value="">All Years</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
                     </select>
                     <select id="rating-filter" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <option value="">All Ratings</option>
@@ -72,13 +78,12 @@
         </div>
 
         <!-- Recommendation Section -->
-        <section class="mb-12">
+         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-6">Recommended For You</h2>
             <div id="recommended-movies" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <!-- Recommended movies will be inserted here by JavaScript -->
             </div>
         </section>
-
         <!-- All Movies Section -->
         <section>
             <h2 class="text-2xl font-bold mb-6">Browse Movies</h2>
